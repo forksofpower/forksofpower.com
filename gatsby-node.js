@@ -18,7 +18,7 @@ exports.createPages = ({ actions, graphql }) => {
       }
     }
   `).then(result => {
-    const postTemplate = path.resolve(`./src/templates/post.js`)
+    const articleTemplate = path.resolve(`./src/templates/article.tsx`)
 
     const allEdges = result.data.allDevArticles.edges
 

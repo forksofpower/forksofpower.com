@@ -3,6 +3,7 @@ import { PageProps, Link, graphql } from "gatsby";
 
 import Layout from '../components/layout'
 import SEO from "../components/seo"
+import BlogPost from "../components/BlogPost"
 
 type DataProps = {
    allDevArticles: {
@@ -18,7 +19,7 @@ type DataProps = {
    } 
 }
 
-const Article: React.FC<PageProps<DataProps>> = ({dataProps}) => {
+const Article: React.FC<PageProps<DataProps>> = ({data}) => {
     const article = data.allDevArticles.edges[0].node.article
     
     return (
@@ -35,7 +36,7 @@ export const pageQuery = graphql`
     query PageQuery($id: Int!) {
         allDevArticles(filter: {article: { id: { eq: $id} } }) {
             edges {
-                nodes {
+                node {
                     article {
                         title
                         slug

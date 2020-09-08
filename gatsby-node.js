@@ -53,9 +53,9 @@ exports.createPages = ({ actions, graphql }) => {
 exports.createResolvers = ({ createResolvers }) => {
     const resolvers = {
         DevArticlesArticle: {
-            customSlug: {
+            slug: {
                 type: "String!",
-                resolve: (source, args, context) => {
+                resolve: (source) => {
                     return toSlug(source.title)
                 }
             }

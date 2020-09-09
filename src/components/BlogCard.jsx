@@ -66,7 +66,7 @@ const BlogCard = ({ post }) => (
       </h4>
       <div className="tags">
         {post.tag_list_array.map((tag, key) => (
-          <a key={key} href="/">
+          <a key={key} href={`/tags/${tag}`}>
             <span className="tag">{`#${tag}`}</span>
           </a>
         ))}

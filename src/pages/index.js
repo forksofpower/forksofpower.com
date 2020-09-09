@@ -33,7 +33,6 @@ export const query = graphql`
             # cover_image
             title
             slug
-            # custom_slug
             tag_list
             # flare_tag {
             #   name

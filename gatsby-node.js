@@ -1,77 +1,85 @@
 const path = require("path")
-const slugify = require('slugify')
+const slugify = require("slugify")
 const { createFilePath } = require("gatsby-source-filesystem")
+// const { toSlug } = require("./src/helpers")
+
+const articleTemplate = path.resolve(`./src/templates/article.tsx`)
 
 const slugOptions = {
-    replacement: '-',
-    lower: true
+  replacement: "-",
+  lower: true,
 }
 
 // slug helper
-const toSlug = (string) => {
-    return slugify(string, slugOptions)
+const toSlug = string => {
+  return slugify(string, slugOptions)
 }
 
-exports.createPages = ({ actions, graphql }) => {
-  const { createPage } = actions
-
-  return graphql(`
+exports.createPages = async ({ actions, graphql }) => {
+    const { createPage } = actions
+    // create article pages
+    let result = await graphql(`
     {
-      allDevArticles {
-        edges {
-          node {
-            article {
-              id
-              slug
-              title
-            }
-          }
-        }
-      }
-    }
-  `).then(result => {
-    const articleTemplate = path.resolve(`./src/templates/article.tsx`)
-
-    const allEdges = result.data.allDevArticles.edges
-
-    // Iterate over the array of edges
-    allEdges.forEach(({ node }) => {
-      const article = node.article
-      const customSlug = toSlug(article.title)
-      // create the gatsby page for the Dev.to article
-      createPage({
-        path: `/${customSlug}`,
-        component: articleTemplate,
-        context: {
-          id: article.id,
-        },
-      })
-    })
-  })
-}
-
-exports.createResolvers = ({ createResolvers }) => {
-    const resolvers = {
-        DevArticlesArticle: {
-            slug: {
-                type: "String!",
-                resolve: (source) => {
-                    return toSlug(source.title)
+        articles: allDevArticles {
+            edges {
+                node {
+                    article {
+                        id
+                        slug
+                        title
+                    }
                 }
             }
         }
-    }
-    createResolvers(resolvers)
-}
-// exports.onCreateNode = ({node, actions, getNode}) => {
-//     const { createNodeField } = actions
 
-//     if (node.internal.type === `MarkdownRemark`) {
-//         const value = createFilePath({ node, getNode })
-//         createNodeField({
-//             name: `slug`,
-//             node,
-//             value
-//         })
-//     }
-// }
+        tags: allDevArticles {
+            group(field: article___tags) {
+                tag: fieldValue
+            }
+        }
+    }
+    `)
+    const allArticles = result.data.articles.edges
+    const allTags = result.data.tags.group
+
+    // Iterate over the array of edges
+    allArticles.forEach(({ node }) => {
+        const article = node.article
+        // create the gatsby page for the Dev.to article
+        // use the rewritten slug as the path for now
+        createPage({
+            path: `/${article.slug}`,
+            component: articleTemplate,
+            context: {
+                id: article.id
+            }
+        })
+    })
+
+    // create tag pages
+    allTags.forEach(({ tag }) => {
+        createPage({
+            path: `/tags/${toSlug(tag)}`,
+            component: tagTemplate,
+            context: {
+                tag: tag
+            }
+        })
+    })
+
+}
+
+exports.createResolvers = ({ createResolvers }) => {
+  const resolvers = {
+    DevArticlesArticle: {
+      // rewrite dev.to slug to a useful format
+      slug: {
+        type: "String!",
+        resolve: source => {
+          return `articles/${toSlug(source.title)}`
+        },
+      },
+    },
+  }
+  createResolvers(resolvers)
+}

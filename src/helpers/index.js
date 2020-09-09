@@ -4,6 +4,6 @@ const slugOptions = {
 }
 
 // slug helper
-export const toSlug = (string) => {
+const toSlug = (string) => {
     return slugify(string, slugOptions)
 }

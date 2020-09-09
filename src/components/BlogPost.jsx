@@ -70,7 +70,7 @@ const BlogPost = ({post}) => {
         <Card>
             <BlogPostStyle>
                 <h1 className="title">
-                    <a href={`/${post.title}`}>{post.title}</a>
+                    <a href={`/${post.slug}`}>{post.title}</a>
                 </h1>
                 <div className="body">{Content}</div>
             </BlogPostStyle>

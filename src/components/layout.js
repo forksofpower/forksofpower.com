@@ -13,7 +13,7 @@ import Header from "./header"
 import "./layout.css"
 import Hero from "./Hero"
 
-const Layout = ({ children, hero }) => {
+const Layout = ({ children }) => {
   const data = useStaticQuery(graphql`
     query SiteQuery {
       site {
@@ -27,9 +27,6 @@ const Layout = ({ children, hero }) => {
   return (
     <>
       <Header siteTitle={data.site.siteMetadata.title} />
-      {hero !== {} &&
-        <Hero title={hero.title} />
-      }
       <div
         style={{
           margin: `0 auto`,

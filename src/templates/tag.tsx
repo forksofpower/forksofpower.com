@@ -5,9 +5,7 @@ import Layout from "../components/layout"
 import BlogCard from "../components/BlogCard"
 
 const Tag = ({ data }) => (
-  <Layout hero={{
-    title: "tags"
-  }}>
+  <Layout>
     {data.allDevArticles.edges.map(({ node }, key) => (
       <BlogCard
         key={key}

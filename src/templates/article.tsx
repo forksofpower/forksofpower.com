@@ -26,6 +26,9 @@ const Article: React.FC<PageProps<DataProps>> = ({data}) => {
         <Layout>
             <SEO title={`${article.title}`} />
             <BlogPost post={article} />
+            <footer>
+                <a href={article.url}>Original Article</a>
+            </footer>
         </Layout>
     )
 }
@@ -41,6 +44,7 @@ export const pageQuery = graphql`
                         title
                         slug
                         body_html
+                        url
                     }
                 }
             }

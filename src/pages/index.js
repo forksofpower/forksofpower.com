@@ -4,19 +4,11 @@ import { graphql } from "gatsby"
 import Layout from "../components/layout"
 // import Image from "../components/image"
 // import SEO from "../components/seo"
-import BlogCard from "../components/BlogCard"
+// import BlogCard from "../components/BlogCard"
 
 const IndexPage = ({data}) => (
   <Layout>
-    {data.allDevArticles.edges.map((node, key) => (
-      <BlogCard
-        key={key}
-        post={{
-          ...node.node.article,
-          tag_list_array: node.node.article.tag_list.split(',').map(tag => tag.trim())
-        }}
-      />
-    ))}
+    <h1>Hello there!</h1>
   </Layout>
 )
 

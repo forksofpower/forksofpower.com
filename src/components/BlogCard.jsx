@@ -56,7 +56,7 @@ const BlogCardStyle = styled.div`
 const BlogCard = ({ post }) => (
   <Card padding={30}>
     <BlogCardStyle>
-      <Link to={post.slug}>
+      <Link to={`/article/${post.slug}`}>
         <div className="content">
           <h3>{post.title}</h3>
         </div>

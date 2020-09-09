@@ -18,7 +18,7 @@ const toSlug = string => {
 
 exports.createPages = async ({ actions, graphql }) => {
     const { createPage } = actions
-    // create article pages
+
     let result = await graphql(`
     {
         articles: allDevArticles {
@@ -42,13 +42,13 @@ exports.createPages = async ({ actions, graphql }) => {
     const allArticles = result.data.articles.edges
     const allTags = result.data.tags.group
 
-    // Iterate over the array of edges
+    // create article pages
     allArticles.forEach(({ node }) => {
         const article = node.article
         // create the gatsby page for the Dev.to article
         // use the rewritten slug as the path for now
         createPage({
-            path: `/articles/${article.slug}`,
+            path: `/article/${article.slug}`,
             component: articleTemplate,
             context: {
               id: article.id

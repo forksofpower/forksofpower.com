@@ -4,6 +4,7 @@ const { createFilePath } = require("gatsby-source-filesystem")
 // const { toSlug } = require("./src/helpers")
 
 const articleTemplate = path.resolve(`./src/templates/article.tsx`)
+const tagTemplate = path.resolve('./src/templates/tag.tsx')
 
 const slugOptions = {
   replacement: "-",
@@ -48,7 +49,7 @@ exports.createPages = async ({ actions, graphql }) => {
         // create the gatsby page for the Dev.to article
         // use the rewritten slug as the path for now
         createPage({
-            path: `/${article.slug}`,
+            path: `/articles/${article.slug}`,
             component: articleTemplate,
             context: {
                 id: article.id
@@ -76,7 +77,7 @@ exports.createResolvers = ({ createResolvers }) => {
       slug: {
         type: "String!",
         resolve: source => {
-          return `articles/${toSlug(source.title)}`
+          return toSlug(source.title)
         },
       },
     },

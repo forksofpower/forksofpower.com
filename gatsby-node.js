@@ -51,7 +51,7 @@ exports.createPages = async ({ actions, graphql }) => {
             path: `/articles/${article.slug}`,
             component: articleTemplate,
             context: {
-                id: article.id
+              id: article.id
             }
         })
     })
@@ -59,7 +59,7 @@ exports.createPages = async ({ actions, graphql }) => {
     // create tag pages
     allTags.forEach(({ tag }) => {
         createPage({
-            path: `/tags/${toSlug(tag)}`,
+            path: `/tag/${toSlug(tag)}`,
             component: tagTemplate,
             context: {
                 tag: tag

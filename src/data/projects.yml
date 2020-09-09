@@ -1,0 +1,8 @@
+---
+projects:
+    -   name: "Kikori"
+        description: "Log management..."
+    -   name: "Flatboard"
+        description: "Digital signage"
+    -   name: "Pixel Place"
+        description: "Reddit place but not"

@@ -13,6 +13,13 @@ module.exports = {
         path: `${__dirname}/src/images`,
       },
     },
+    `gatsby-transformer-yaml`,
+    {
+      resolve: `gatsby-source-filesystem`,
+      options: {
+        path: `./src/data`
+      }
+    },
     {
       resolve: 'gatsby-source-dev',
       options: {
@@ -20,6 +27,7 @@ module.exports = {
         username: 'forksofpower'
       },
     },
+    `gatsby-plugin-emotion`,
     `gatsby-transformer-sharp`,
     `gatsby-plugin-sharp`,
     {

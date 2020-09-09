@@ -32,7 +32,6 @@ exports.createPages = async ({ actions, graphql }) => {
                 }
             }
         }
-
         tags: allDevArticles {
             group(field: article___tags) {
                 tag: fieldValue

@@ -49,6 +49,7 @@ const BlogPostStyle = styled.div`
   }
 `
 
+
 const BlogPost = ({post}) => {
     const removeWrappers = html => {
         ([`html`, `body`]).forEach(tag => {

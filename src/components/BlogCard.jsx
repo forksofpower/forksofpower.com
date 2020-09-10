@@ -7,20 +7,20 @@ import styled from "@emotion/styled";
 import is, { not } from "is_js"
 import tw from 'twin.macro';
 
-const CardBody = ({ hasImage }) => styled.div`
-  ${tw`
-    border-r border-b border-l
-    lg:border-l lg:border-t lg:border-gray-400
-    border-gray-400
-    bg-white
-    rounded-b
-    lg:rounded-tr
-    lg:rounded-bl-none
-    p-4 flex flex-col justify-between leading-normal 
-  `}
-  ${not(hasImage) ? "border-t rounded-t" : ""}
-  border-top
-`
+// const CardBody = ({ hasImage }) => styled.div`
+//   ${tw`
+//     border-r border-b border-l
+//     lg:border-l lg:border-t lg:border-gray-400
+//     border-gray-400
+//     bg-white
+//     rounded-b
+//     lg:rounded-tr
+//     lg:rounded-bl-none
+//     p-4 flex flex-col justify-between leading-normal 
+//   `}
+//   ${not(hasImage) ? "border-t rounded-t" : ""}
+//   border-top
+// `
 
 const ArticleCardImage = ({src, alt}) => (
   <div 
@@ -45,7 +45,7 @@ const BlogCard = ({ post }) => (
   <div class="lg:flex pb-4">
   {post.cover_image && 
   <ArticleCardImage src={post.cover_image} alt="TEST" />}
-  <CardBody hasImage={post.cover_image}>
+  {/* <CardBody hasImage={post.cover_image}> */}
     <div class="text-gray-900 font-bold text-xl mb-2">
       <Link to={`/article/${post.slug}`}>
         {post.title}
@@ -53,7 +53,7 @@ const BlogCard = ({ post }) => (
     </div>
     <p class="text-gray-700 text-base mb-0">{post.description}</p>
     <ArticleCardTags tags={post.tag_list_array} />
-  </CardBody>
+  {/* </CardBody> */}
 </div>
 )
 export default BlogCard

@@ -43,6 +43,7 @@ export const pageQuery = graphql`
                     article {
                         title
                         slug
+                        cover_image
                         body_html
                         url
                     }

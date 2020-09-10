@@ -49,6 +49,7 @@ const BlogPostStyle = styled.div`
   }
 `
 
+
 const BlogPost = ({post}) => {
     const removeWrappers = html => {
         ([`html`, `body`]).forEach(tag => {
@@ -68,6 +69,9 @@ const BlogPost = ({post}) => {
 
     return (
         <Card>
+            {post.cover_image && 
+              <img src={post.cover_image} alt="article cover"/>
+            }
             <BlogPostStyle>
                 <h1 className="title">
                     <a href={`/article/${post.slug}`}>{post.title}</a>

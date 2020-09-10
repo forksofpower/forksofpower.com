@@ -34,6 +34,7 @@ export const pageQuery = graphql`
             title
             slug
             tag_list
+            cover_image
             readable_publish_date
             positive_reactions_count
             comments_count

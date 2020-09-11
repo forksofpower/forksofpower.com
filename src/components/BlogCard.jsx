@@ -19,13 +19,15 @@ const CardBody = styled.div`
     p-4 flex flex-col justify-between leading-normal 
   `}
 `
+const CardImageStyle = tw.div`
+  h-48 lg:h-auto lg:w-48 flex-none bg-cover rounded-t lg:rounded-t-none lg:rounded-l text-center overflow-hidden
+`
 
 const ArticleCardImage = ({src, alt}) => (
-  <div 
-    class="h-48 lg:h-auto lg:w-48 flex-none bg-cover rounded-t lg:rounded-t-none lg:rounded-l text-center overflow-hidden" 
-    style={{background: `url('${src}') no-repeat center`, backgroundSize: 'cover'}} 
-    title={alt}
-  />
+  <CardImageStyle style={{
+    background: `url('${src}') no-repeat center`,
+    backgroundSize: 'cover'
+  }} />
 )
 
 const TagStyle = tw.span`
@@ -53,7 +55,9 @@ const BlogCard = ({ post }) => (
         {post.title}
       </Link>
     </div>
-    <p class="text-gray-700 text-base mb-0">{post.description}</p>
+    <p class="text-gray-700 text-base mb-0">
+      {post.description}
+    </p>
     <ArticleCardTags tags={post.tag_list_array} />
   </CardBody>
 </div>

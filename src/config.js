@@ -1,6 +1,6 @@
 export default {
     siteMetadata: {
-        title: 'Patrick Jones - Full Stack Software Developer',
+        title: 'Patrick Jones',
         header: 'change this later'
     },
     devToUsername: 'forksofpower'

@@ -4,9 +4,10 @@ import { Link } from "gatsby";
 import styled from "@emotion/styled";
 
 // import Card from './Card'
-import is, { not } from "is_js"
+import is from "is_js"
 import tw from 'twin.macro';
 
+// style components
 const CardBody = styled.div`
   ${tw`
     border-r border-b border-l
@@ -17,12 +18,17 @@ const CardBody = styled.div`
     lg:rounded-tr
     lg:rounded-bl-none
     p-4 flex flex-col justify-between leading-normal 
-  `}
+    `}
 `
 const CardImageStyle = tw.div`
   h-48 lg:h-auto lg:w-48 flex-none bg-cover rounded-t lg:rounded-t-none lg:rounded-l text-center overflow-hidden
 `
+    
+const TagStyle = tw.span`
+  inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2
+`
 
+// display components
 const ArticleCardImage = ({src, alt}) => (
   <CardImageStyle style={{
     background: `url('${src}') no-repeat center`,
@@ -30,9 +36,6 @@ const ArticleCardImage = ({src, alt}) => (
   }} />
 )
 
-const TagStyle = tw.span`
-  inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2
-`
 
 const ArticleCardTags = ({tags}) => (
   is.not.empty(tags) &&

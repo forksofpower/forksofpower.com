@@ -42,7 +42,13 @@ export const query = graphql`
           article {
             id
             path
-            cover_image
+            cover_image {
+              childImageSharp {
+                fluid(maxWidth: 1000) {
+                  ...GatsbyImageSharpFluid
+                }
+              }
+            }
             title
             slug
             tag_list

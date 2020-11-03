@@ -4,6 +4,7 @@ import styled from '@emotion/styled'
 
 import { linkBlock } from './blocks'
 import Card from './Card';
+import Img from 'gatsby-image';
 
 const BlogPostStyle = styled.div`
   h1.title {
@@ -49,7 +50,6 @@ const BlogPostStyle = styled.div`
   }
 `
 
-
 const BlogPost = ({post}) => {
     const removeWrappers = html => {
         ([`html`, `body`]).forEach(tag => {
@@ -69,8 +69,8 @@ const BlogPost = ({post}) => {
 
     return (
         <Card>
-            {post.cover_image && 
-              <img src={post.cover_image} alt="article cover"/>
+            {post.cover_image &&
+              <Img fluid={post.cover_image.childImageSharp.fluid} />
             }
             <BlogPostStyle>
                 <h1 className="title">

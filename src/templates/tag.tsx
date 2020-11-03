@@ -34,7 +34,13 @@ export const pageQuery = graphql`
             title
             slug
             tag_list
-            cover_image
+            cover_image {
+              childImageSharp {
+                fluid(maxWidth: 1000) {
+                  ...GatsbyImageSharpFluid
+                }
+              }
+            }
             readable_publish_date
             positive_reactions_count
             comments_count

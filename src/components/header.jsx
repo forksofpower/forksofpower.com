@@ -43,21 +43,18 @@ const Header = ({ siteTitle }) => {
           id="example-navbar-danger"
         >
           <ul className="flex flex-col lg:flex-row list-none lg:ml-auto">
-            <NavLink to="/">
+            {/* <NavLink to="/">
               <span className="ml-2">root</span>
-            </NavLink>
-            <NavLink to="/about">
+            </NavLink> */}
+            <NavLink to="/">
               <span className="ml-2">about</span>
-            </NavLink>
-            <NavLink to="/projects">
-              <span className="ml-2">projects</span>
             </NavLink>
             <NavLink to="/articles">
               <span className="ml-2">articles</span>
             </NavLink>
-            <NavLink to="/contact">
+            {/* <NavLink to="/contact" >
               <span className="ml-2">contact</span>
-            </NavLink>
+            </NavLink> */}
           </ul>
         </div>
       </div>

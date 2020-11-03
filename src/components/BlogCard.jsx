@@ -51,7 +51,7 @@ const ArticleCardTags = ({tags}) => (
 const BlogCard = ({ post }) => (
   <div class="lg:flex pb-4">
   {post.cover_image && 
-  <ArticleCardImage src={post.cover_image} alt="TEST" />}
+  <ArticleCardImage src={post.cover_image.childImageSharp.fluid.src} alt="TEST" />}
   <CardBody>
     <div class="text-gray-900 font-bold text-xl mb-2">
       <Link to={`/article/${post.slug}`}>

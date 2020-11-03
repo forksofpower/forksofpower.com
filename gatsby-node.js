@@ -1,6 +1,6 @@
 const path = require("path")
 const slugify = require("slugify")
-const { createFilePath } = require("gatsby-source-filesystem")
+const { createFilePath, createRemoteFileNode } = require("gatsby-source-filesystem")
 // const { toSlug } = require("./src/helpers")
 
 const articleTemplate = path.resolve(`./src/templates/article.tsx`)
@@ -69,6 +69,28 @@ exports.createPages = async ({ actions, graphql }) => {
 
 }
 
+exports.onCreateNode = async ({
+  node,
+  actions: { createNode },
+  store,
+  cache,
+  createNodeId
+}) => {
+  if(node.internal.type === "DevArticles" && node.article.cover_image !== null) {
+    let fileNode = await createRemoteFileNode({
+      url: node.article.cover_image,
+      parentNodeId: node.id,
+      createNode,
+      createNodeId,
+      cache,
+      store
+    })
+
+    if (fileNode) {
+      node.article.cover_image___NODE = fileNode.id
+    }
+  }
+}
 exports.createResolvers = ({ createResolvers }) => {
   const resolvers = {
     DevArticlesArticle: {
